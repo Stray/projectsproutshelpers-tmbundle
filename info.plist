@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Sprouts</string>
+	<key>ordering</key>
+	<array>
+		<string>F62EBE1F-2BA5-405F-8CD2-C5AFB9426F79</string>
+		<string>7BF4DF06-2FE6-4138-9ADA-C73999ED63D2</string>
+	</array>
+	<key>uuid</key>
+	<string>6CCB64F8-1A6F-449A-9259-932CA2B799EF</string>
+</dict>
+</plist>

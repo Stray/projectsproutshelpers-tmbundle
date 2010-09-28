@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>#                              ${1:module name} module
+
+task :make${1/(^[^ ]+)?([ ]+)?/(?1:$1)(?2:)/g}module =&gt; "bin/modules/${1/(^[^ ]+)?([ ]+)?/(?1:$1)(?2:_)/g}_module/${1/([a-z]+)?([ ]?)+?/(?1:\u$1)(?2:)/g}Module.swf"
+
+desc "Compile the $1 module swf"
+mxmlc "bin/modules/${1/(^[^ ]+)?([ ]+)?/(?1:$1)(?2:_)/g}_module/${1/([a-z]+)?([ ]?)+?/(?1:\u$1)(?2:)/g}Module.swf" do |t|
+ t.input = "src/com/jpk/academy/tools/modules/${1/(^[^ ]+)?([ ]+)?/(?1:$1)(?2:)/g}module/restricted/${1/([a-z]+)?([ ]?)+?/(?1:\u$1)(?2:)/g}Module.as"
+ prep_module_task(t) 
+end</string>
+	<key>name</key>
+	<string>make module task</string>
+	<key>tabTrigger</key>
+	<string>moduletask</string>
+	<key>uuid</key>
+	<string>50FA5765-CAFB-45C6-8C6D-952D68E257EC</string>
+</dict>
+</plist>

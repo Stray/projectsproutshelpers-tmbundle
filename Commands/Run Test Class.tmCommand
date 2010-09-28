@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>saveActiveFile</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby -wKU
+require ENV['TM_SUPPORT_PATH'] + '/lib/escape.rb'
+
+def find_directory
+  res = ENV['TM_PROJECT_DIRECTORY']
+end
+
+def find_testname
+  res = ENV['TM_FILENAME']
+  res = res.split('.')[0]
+end
+
+def terminal_script(dir, testname)
+  return &lt;&lt;-APPLESCRIPT
+    tell application "Terminal"
+		activate
+	     if tab 1 of window 1 is busy then
+			do script "cd #{e_as(e_sh(dir))}; rake testpackage['#{testname}']"
+		else
+			do script "rake testpackage['#{testname}']" in tab 1 of window 1
+		end if 
+	end tell
+  APPLESCRIPT
+end
+
+dir = find_directory
+testname = find_testname
+script = terminal_script(dir, testname)
+open("|osascript", "w") { |io| io &lt;&lt; script }
+</string>
+	<key>input</key>
+	<string>none</string>
+	<key>keyEquivalent</key>
+	<string>@\</string>
+	<key>name</key>
+	<string>Run Test Class</string>
+	<key>output</key>
+	<string>discard</string>
+	<key>scope</key>
+	<string>source.actionscript.3 meta.package.actionscript.3 meta.class.actionscript.3, source.actionscript.3 meta.package.actionscript.3 meta.class.actionscript.3 meta.scope.following.dot.actionscript.3</string>
+	<key>uuid</key>
+	<string>F62EBE1F-2BA5-405F-8CD2-C5AFB9426F79</string>
+</dict>
+</plist>
